@@ -1,0 +1,22 @@
+<!-- pokemon_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}ポケモン図鑑{% endblock %}
+
+{% block content %}
+    <h1>ポケモン図鑑</h1>
+    <div class="row">
+        {% for pokemon in pokemon_data %}
+          <div class="col-lg-2 mb-3"> 
+              <!-- 1匹あたり2/12割の大きさ -->
+            <div class="card">
+              <img src="{{ pokemon.image_url }}" class="card-img-top" alt="{{ pokemon.name }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ pokemon.name_ja }} / {{ pokemon.name_en}}</h5>
+                <p class="card-text">No.{{ pokemon.id_number }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>      
+{% endblock %}
