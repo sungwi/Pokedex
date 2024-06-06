@@ -1,0 +1,10 @@
+<!-- pokemon_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{pokemon.name_ja}}{% endblock %}
+
+{% block content %}
+    <h1>詳細データ</h1>
+    <p>{{ pokemon.name_ja }}{{ pokemon.name_en }}</p>  
+    <p>{{ pokemon.id_number }}</p> 
+{% endblock %}

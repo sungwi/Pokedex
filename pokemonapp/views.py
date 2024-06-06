@@ -1,7 +1,7 @@
 from email.mime import base
 import requests
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from .models import Pokemon
 
 
@@ -41,3 +41,8 @@ class PokemonList(TemplateView):
                 return name_info['name']
             else:
                 return None
+
+class Pokemon_detail(DetailView):
+    model = Pokemon
+    template_name = 'pokemonapp/pokemon_detail.html'
+    context_object_name: 'pokemon'
