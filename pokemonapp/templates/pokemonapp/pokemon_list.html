@@ -12,7 +12,11 @@
             <div class="card">
               <img src="{{ pokemon.image_url }}" class="card-img-top" alt="{{ pokemon.name }}">
               <div class="card-body">
-                <h5 class="card-title">{{ pokemon.name_ja }} / {{ pokemon.name_en}}</h5>
+                <h5 class="card-title">
+                    <a href="{% url 'pokemon_detail' pokemon.pk %}">
+                        {{ pokemon.name_ja }} / {{ pokemon.name_en}}
+                    </a>
+                </h5>
                 <p class="card-text">No.{{ pokemon.id_number }}</p>
               </div>
             </div>
