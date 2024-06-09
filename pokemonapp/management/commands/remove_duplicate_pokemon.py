@@ -9,7 +9,6 @@ class Command(BaseCommand):
         duplicates = Pokemon.objects.values('id_number')\
                                     .annotate(count_id_number=models.Count('id_number'))\
                                     .filter(count_id_number__gt=1)
-        print(duplicates)
         for duplicate in tqdm(duplicates):
             pokemons = Pokemon.objects.filter(id_number=duplicate['id_number'])
             pokemon_to_keep = pokemons.first()
