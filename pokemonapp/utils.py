@@ -33,6 +33,8 @@ def fetch_pokemon_data():
         pokemon_indiv_json = pokemon_indiv_response.json()
         # タイプが複数ある対応処理
         types = [type_data['type']['name'] for type_data in pokemon_indiv_json['types']]
+        height = pokemon_indiv_json['height']
+        weight = pokemon_indiv_json['weight']
         # 分類、日本名、説明
         species_response = requests.get(pokemon_indiv_json['species']['url'])
         species_data = species_response.json()
@@ -55,6 +57,8 @@ def fetch_pokemon_data():
                 'type': types,
                 'genus': genus,
                 'text': text,
-                'ability': ability
+                'ability': ability,
+                'height': height,
+                'weight': weight
             }
         )

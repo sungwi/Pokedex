@@ -4,7 +4,6 @@
 {% block title %}ポケモン図鑑{% endblock %}
 
 {% block content %}
-    <h1>ポケモン図鑑</h1>
     <div class="row">
         {% for pokemon in pokemon_data %}
           <div class="col-lg-2 mb-3"> 
@@ -14,7 +13,7 @@
               <div class="card-body">
                 <h5 class="card-title">
                     <a href="{% url 'pokemon_detail' pokemon.pk %}">
-                        {{ pokemon.name_ja }} / {{ pokemon.name_en}}
+                        {{ pokemon.name_ja }}
                     </a>
                 </h5>
                 <p class="card-text">No.{{ pokemon.id_number }}</p>
