@@ -10,3 +10,5 @@ class Pokemon(models.Model):
     genus = models.CharField(max_length=100, default='unknown') # 分類
     text = models.TextField(default=None)
     ability = models.JSONField(default=[])
+    height = models.FloatField(default=0)
+    weight = models.FloatField(default=0)
