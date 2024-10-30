@@ -139,4 +139,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'pokemonapp/static'),
 ]
 
-STATIC_ROOT = BASE_DIR / "staticfiles" / "static"
+STATIC_ROOT = BASE_DIR / "staticfiles"
