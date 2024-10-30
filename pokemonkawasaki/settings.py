@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-gna9ewteahk2@2r@*+ju*0&*uknacisd=&yzw%vt@dp$snaxz$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".vercel.app"]
 
 
 # Application definition
@@ -75,12 +75,23 @@ WSGI_APPLICATION = 'pokemonkawasaki.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pokemon_db',    # ステップ2で作成したデータベース名
+        'USER': 'kimsongwi',     # PostgreSQLのユーザー名
+        'PASSWORD': '',          # パスワードを入力（設定されている場合）
+        'HOST': 'localhost',     # デフォルトではlocalhost
+        'PORT': '5432',          # デフォルトのポート
     }
 }
+
 
 
 # Password validation
@@ -127,3 +138,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'pokemonapp/static'),
 ]
+
+STATIC_ROOT = BASE_DIR / "staticfiles" / "static"
