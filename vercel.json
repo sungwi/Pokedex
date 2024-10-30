@@ -11,17 +11,13 @@
         },
         {
             "src": "build.sh",
-            "use":"@vercel/static-build",
-            "config":{
+            "use": "@vercel/static-build",
+            "config": {
                 "distDir": "staticfiles"
             }
         }
     ],
     "routes": [
-        {
-            "src":"/static/(.*)",
-            "dest":"/static/$1"
-        },
         {
             "src": "/(.*)",
             "dest": "pokemonkawasaki/wsgi.py"

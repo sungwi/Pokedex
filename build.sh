@@ -2,19 +2,18 @@
 
 # Update pip
 echo "Updating pip..."
-python3.10 -m pip install -U pip  # -m オプションを忘れないように
+python3.10 -m pip install -U pip
 
 # Install dependencies
-echo "Installing project dependencies..."
+echo "Installing dependencies..."
 python3.10 -m pip install -r requirements.txt
 
-# Make migrations
-echo "Making migrations..."
-python3.10 manage.py makemigrations --noinput
+# Apply migrations
+echo "Applying migrations..."
 python3.10 manage.py migrate --noinput
 
-# Collect staticfiles
-echo "Collect static..."
+# Collect static files
+echo "Collecting static files..."
 python3.10 manage.py collectstatic --noinput --clear
 
 echo "Build process completed!"
