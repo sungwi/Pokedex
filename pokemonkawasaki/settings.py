@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from os import getenv
+from dotenv import load_dotenv
+from urllib.parse import urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,17 +84,30 @@ WSGI_APPLICATION = 'pokemonkawasaki.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'pokemon_db',    # ステップ2で作成したデータベース名
+#         'USER': 'kimsongwi',     # PostgreSQLのユーザー名
+#         'PASSWORD': '',          # パスワードを入力（設定されている場合）
+#         'HOST': 'localhost',     # デフォルトではlocalhost
+#         'PORT': '5432',          # デフォルトのポート
+#     }
+# }
+# Replace the DATABASES section of your settings.py with this
+load_dotenv()
+tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pokemon_db',    # ステップ2で作成したデータベース名
-        'USER': 'kimsongwi',     # PostgreSQLのユーザー名
-        'PASSWORD': '',          # パスワードを入力（設定されている場合）
-        'HOST': 'localhost',     # デフォルトではlocalhost
-        'PORT': '5432',          # デフォルトのポート
+        'NAME': tmpPostgres.path.replace('/', ''),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
+        'PORT': 5432,
     }
 }
-
 
 
 # Password validation
