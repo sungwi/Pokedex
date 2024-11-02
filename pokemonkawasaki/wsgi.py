@@ -6,9 +6,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pokemonkawasaki.settings')
 
 application = get_wsgi_application()
 
-# WhiteNoiseを利用して静的ファイルを提供する
-from django.conf import settings
-application = WhiteNoise(application, root=settings.STATIC_ROOT)
+application = WhiteNoise(application, root=os.path.join(os.path.dirname(__file__), 'static'))
 
-# Vercel互換性のため
-app = application
+app = application 
