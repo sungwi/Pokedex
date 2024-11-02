@@ -97,17 +97,33 @@ WSGI_APPLICATION = 'pokemonkawasaki.wsgi.application'
 # }
 # Replace the DATABASES section of your settings.py with this
 load_dotenv()
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
+database_url = os.getenv("DATABASE_URL")
+
+if database_url:
+    # Vercelで設定されたDATABASE_URLがある場合
+    tmpPostgres = urlparse(database_url)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': tmpPostgres.path[1:],  # 最初のスラッシュを除去
+            'USER': tmpPostgres.username,
+            'PASSWORD': tmpPostgres.password,
+            'HOST': tmpPostgres.hostname,
+            'PORT': tmpPostgres.port or '5432',
+        }
     }
-}
+else:
+    # ローカル環境の場合のデフォルト設定
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'pokemon_db',
+            'USER': 'kimsongwi',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
