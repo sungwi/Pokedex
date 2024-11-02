@@ -19,7 +19,7 @@
                 <p>タイプ：
                     {% for type_obj in pokemon.type %}
                         <span class="tooltip">
-                            <img src="{% static 'images/types/' %}{{ type_obj }}.svg" alt="{{ type_obj }}" class="icon-type-svg">
+                            <img src="{% static 'pokeapp/images/types/' %}{{ type_obj }}.svg" alt="{{ type_obj }}" class="icon-type-svg">
                             <span class="tooltiptext">
                                 {{ type_mapping|get_item:type_obj }}
                             </span>
