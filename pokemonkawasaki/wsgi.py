@@ -6,6 +6,6 @@ from whitenoise import WhiteNoise
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pokemonkawasaki.settings')
 
 application = get_wsgi_application()
-application = WhiteNoise(application)
+application = WhiteNoise(application, root=os.path.join(BASE_DIR, 'staticfiles'))
 
 app = application 
