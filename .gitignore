@@ -4,3 +4,4 @@ venv/
 staticfiles/
 __pycache__/
 *.py[cod]
+.env
