@@ -16,6 +16,8 @@ from os import getenv
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,13 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gna9ewteahk2@2r@*+ju*0&*uknacisd=&yzw%vt@dp$snaxz$'
+SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", ".vercel.app,localhost,127.0.0.1").split(",")
 
 
 # Application definition
@@ -96,7 +96,6 @@ WSGI_APPLICATION = 'pokemonkawasaki.wsgi.application'
 #     }
 # }
 # Replace the DATABASES section of your settings.py with this
-load_dotenv()
 database_url = os.getenv("DATABASE_URL")
 
 if database_url:
