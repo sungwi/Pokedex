@@ -19,5 +19,6 @@
             "src": "/(.*)",
             "dest": "pokemonkawasaki/wsgi.py"
         }
-    ]
+    ],
+    "outputDirectory": "staticfiles"
 }
